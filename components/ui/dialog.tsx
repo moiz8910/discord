@@ -1,22 +1,24 @@
-// "use client"
+// import * as React from "react";
+// import * as DialogPrimitive from "@radix-ui/react-dialog";
+// import { X } from "lucide-react";
+// import { cn } from "@/lib/utils";
 
-// import * as React from "react"
-// import * as DialogPrimitive from "@radix-ui/react-dialog"
-// import { X } from "lucide-react"
+// const Dialog = DialogPrimitive.Root;
 
-// import { cn } from "@/lib/utils"
+// const DialogTrigger = DialogPrimitive.Trigger;
 
-// const Dialog = DialogPrimitive.Root
-
-// const DialogTrigger = DialogPrimitive.Trigger
+// // Update the type definition to include className
+// interface UpdatedDialogPortalProps extends DialogPrimitive.DialogPortalProps {
+//   className?: string;
+// }
 
 // const DialogPortal = ({
 //   className,
 //   ...props
-// }: DialogPrimitive.DialogPortalProps) => (
-//   <DialogPrimitive.Portal className={cn(className)} {...props} />
-// )
-// DialogPortal.displayName = DialogPrimitive.Portal.displayName
+// }: UpdatedDialogPortalProps) => (
+//   <DialogPrimitive.Portal {...props} className={cn(className)} />
+// );
+// DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
 // const DialogOverlay = React.forwardRef<
 //   React.ElementRef<typeof DialogPrimitive.Overlay>,
@@ -30,8 +32,8 @@
 //     )}
 //     {...props}
 //   />
-// ))
-// DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+// ));
+// DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 // const DialogContent = React.forwardRef<
 //   React.ElementRef<typeof DialogPrimitive.Content>,
@@ -54,8 +56,8 @@
 //       </DialogPrimitive.Close>
 //     </DialogPrimitive.Content>
 //   </DialogPortal>
-// ))
-// DialogContent.displayName = DialogPrimitive.Content.displayName
+// ));
+// DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 // const DialogHeader = ({
 //   className,
@@ -68,8 +70,8 @@
 //     )}
 //     {...props}
 //   />
-// )
-// DialogHeader.displayName = "DialogHeader"
+// );
+// DialogHeader.displayName = "DialogHeader";
 
 // const DialogFooter = ({
 //   className,
@@ -82,8 +84,8 @@
 //     )}
 //     {...props}
 //   />
-// )
-// DialogFooter.displayName = "DialogFooter"
+// );
+// DialogFooter.displayName = "DialogFooter";
 
 // const DialogTitle = React.forwardRef<
 //   React.ElementRef<typeof DialogPrimitive.Title>,
@@ -97,8 +99,8 @@
 //     )}
 //     {...props}
 //   />
-// ))
-// DialogTitle.displayName = DialogPrimitive.Title.displayName
+// ));
+// DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
 // const DialogDescription = React.forwardRef<
 //   React.ElementRef<typeof DialogPrimitive.Description>,
@@ -109,8 +111,8 @@
 //     className={cn("text-sm text-muted-foreground", className)}
 //     {...props}
 //   />
-// ))
-// DialogDescription.displayName = DialogPrimitive.Description.displayName
+// ));
+// DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 // export {
 //   Dialog,
@@ -120,7 +122,8 @@
 //   DialogFooter,
 //   DialogTitle,
 //   DialogDescription,
-// }
+// };
+
 
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
@@ -132,17 +135,19 @@ const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 
 // Update the type definition to include className
+// Update the type definition to include className
 interface UpdatedDialogPortalProps extends DialogPrimitive.DialogPortalProps {
   className?: string;
 }
 
-const DialogPortal = ({
-  className,
-  ...props
-}: UpdatedDialogPortalProps) => (
-  <DialogPrimitive.Portal {...props} className={cn(className)} />
-);
+const DialogPortal = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Portal>,
+  UpdatedDialogPortalProps
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Portal ref={ref} {...props} className={cn(className)} />
+));
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
+
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
