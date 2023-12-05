@@ -134,17 +134,20 @@ const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
-// Update the type definition to include className
-// Update the type definition to include className
+// Update the type definition for DialogPortalProps
 interface UpdatedDialogPortalProps extends DialogPrimitive.DialogPortalProps {
   className?: string;
 }
 
+// Update DialogPortal component
+// Update DialogPortal component
 const DialogPortal = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Portal>,
   UpdatedDialogPortalProps
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Portal ref={ref} {...props} className={cn(className)} />
+>(({ className, ...props }, forwardedRef) => (
+  <DialogPrimitive.Portal {...props}>
+    <div ref={forwardedRef} className={cn(className)} />
+  </DialogPrimitive.Portal>
 ));
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
@@ -168,7 +171,7 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
-  <DialogPortal>
+  <DialogPortal className={cn(className)}>
     <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
