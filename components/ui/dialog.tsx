@@ -140,7 +140,7 @@ const DialogPortal = ({
   className,
   ...props
 }: UpdatedDialogPortalProps) => (
-  <DialogPrimitive.Portal className={cn(className)} {...props} />
+  <DialogPrimitive.Portal {...props} className={cn(className)} />
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
